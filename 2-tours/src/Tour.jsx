@@ -15,7 +15,7 @@ const Tour = (props) => {
         </div>
         <p>
           {readMore ? info : `${info.substring(0, 200)}...`}
-          <button type='button' onClick={setReadMore(!readMore)}>
+          <button type='button' onClick={() => setReadMore(!readMore)}>
             {readMore ? 'show less' : 'read more'}
           </button>
         </p>
