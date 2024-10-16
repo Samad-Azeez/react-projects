@@ -5,29 +5,36 @@ import Error from './Error';
 const url = 'https://www.course-api.com/react-tours-project';
 
 const App = () => {
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [tours, setTours] = useState([]);
   const [isError, setIsError] = useState(false);
 
+  const removeTour = (id) => {
+    const newTours = tours.filter((tour) => {
+      return tour.id !== id;
+    });
+    setTours(newTours);
+  };
+
   // function to fetch tours data from the API
   const fetchTours = async () => {
-    setLoading(true);
+    setIsLoading(true);
     setIsError(false);
     try {
       const response = await fetch(url);
       // check if the response is ok, if not throw an error
       if (!response.ok) {
-        throw new Error();
+        throw new Error(`Failed to fetch data: ${response.statusText}`);
       }
       // if the response is ok, then parse the data
       const tours = await response.json();
-      setLoading(false);
+      setIsLoading(false);
       setTours(tours);
       console.log(response);
     } catch (error) {
-      setLoading(false);
+      setIsLoading(false);
       setIsError(true);
-      console.log(error);
+      console.log('msg:', error.message);
     }
   };
 
@@ -36,10 +43,10 @@ const App = () => {
     fetchTours();
   }, []);
 
-  if (loading) {
+  if (isLoading) {
     return (
       <main>
-        <Loading />;
+        <Loading />
       </main>
     );
   }
@@ -47,14 +54,29 @@ const App = () => {
   if (isError) {
     return (
       <main>
-        <Error />;
+        <Error />
+      </main>
+    );
+  }
+
+  if (tours.length === 0) {
+    return (
+      <main>
+        <div className='title'>
+          <h2>No Tours Left</h2>
+
+          {/* add a button to fetch the tours again if the user wants to refresh */}
+          <button className='btn' onClick={fetchTours}>
+            Refresh
+          </button>
+        </div>
       </main>
     );
   }
 
   return (
     <main>
-      <Tours tours={tours} />;
+      <Tours tours={tours} removeTour={removeTour} />
     </main>
   );
 };
