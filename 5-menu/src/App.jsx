@@ -3,15 +3,15 @@ import Menu from './Menu';
 import Categories from './Categories';
 import items from './data';
 
+// Get all unique categories from items
 const allCategories = items.map((item) => item.category);
 const uniqueCategories = ['all', ...new Set(allCategories)];
-
-console.log(allCategories, uniqueCategories);
 
 const App = () => {
   const [menuItems, setMenuItems] = useState(items);
   const [categories, setCategories] = useState(uniqueCategories);
 
+  // Filter items based on category
   const filterItems = (category) => {
     if (category === 'all') {
       setMenuItems(items);
