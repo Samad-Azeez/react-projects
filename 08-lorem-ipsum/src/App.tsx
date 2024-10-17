@@ -1,5 +1,48 @@
+import { useState } from 'react';
+import data from './data';
+
 const App = () => {
-  return <div>App</div>;
+  const [count, setCount] = useState(0);
+  const [text, setText] = useState([]);
+
+  // Handle the form submission and display the data based on the count value entered by the user
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let amount = parseInt(count);
+    if (count <= 0) {
+      amount = 1;
+    }
+    if (count > data.length) {
+      amount = data.length;
+    }
+    setText(data.slice(0, amount));
+  };
+
+  return (
+    <section className='section-center'>
+      <h3>tired of boring lorem ipsum</h3>
+      <form className='lorem-form' onSubmit={handleSubmit}>
+        <label htmlFor='amount'>paragraphs:</label>
+        <input
+          type='number'
+          name='amount'
+          id='amount'
+          value={count} // controlled input
+          onChange={(e) => setCount(e.target.value)}
+        />
+        <button type='submit' className='btn'>
+          generate
+        </button>
+      </form>
+
+      {/* Display the data  */}
+      <article className='lorem-text'>
+        {text.map((item, index) => {
+          return <p key={index}>{item}</p>;
+        })}
+      </article>
+    </section>
+  );
 };
 
 export default App;
