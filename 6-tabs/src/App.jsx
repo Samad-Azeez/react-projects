@@ -1,35 +1,61 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect } from 'react';
+import { useState } from 'react';
 
-function App() {
-  const [count, setCount] = useState(0)
+const url = 'https://www.course-api.com/react-tabs-project';
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
+  const [jobs, setJobs] = useState([]);
+  const [value, setValue] = useState(0);
 
-export default App
+  // Fetch jobs from API
+  const fetchJobs = async () => {
+    setIsLoading(true);
+    setIsError(false);
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const newJobs = await response.json();
+      setJobs(newJobs);
+      setIsLoading(false);
+
+      // catch any errors
+    } catch (error) {
+      setIsLoading(false);
+      setIsError(true);
+      console.error(error);
+    }
+  };
+
+  // Fetch jobs on initial render
+  useEffect(() => {
+    fetchJobs();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <main>
+        <section className='section loading'>
+          <h1>Loading...</h1>
+        </section>
+      </main>
+    );
+  }
+
+  if (isError) {
+    return (
+      <main>
+        <section className='section error'>
+          <h1>Oops, An Error Occurred...</h1>
+        </section>
+      </main>
+    );
+  }
+
+  return <main></main>;
+};
+
+export default App;
