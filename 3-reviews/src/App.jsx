@@ -1,7 +1,16 @@
-import React from 'react';
+import Review from './Review';
 
 const App = () => {
-  return <div>App</div>;
+  return (
+    <main>
+      <section className='title'>
+        <h2>our reviews</h2>
+        <div className='underline'></div>
+        {/* review component */}
+        <Review />
+      </section>
+    </main>
+  );
 };
 
 export default App;

@@ -166,6 +166,8 @@ main {
   box-shadow: var(--light-shadow);
   transition: var(--transition);
   text-align: center;
+  width: 50vw;
+  margin-top: 3rem;
 }
 .review:hover {
   box-shadow: var(--dark-shadow);
