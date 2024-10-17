@@ -137,6 +137,11 @@ p {
   text-align: center;
 }
 
+.error {
+  text-align: center;
+  color: var(--clr-red-dark);
+}
+
 .underline {
   width: 5rem;
   height: 0.25rem;

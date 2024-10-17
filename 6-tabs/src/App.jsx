@@ -37,21 +37,17 @@ const App = () => {
 
   if (isLoading) {
     return (
-      <main>
-        <section className='section loading'>
-          <h1>Loading...</h1>
-        </section>
-      </main>
+      <section className='section loading'>
+        <h1>Loading...</h1>
+      </section>
     );
   }
 
   if (isError) {
     return (
-      <main>
-        <section className='section error'>
-          <h1>Oops, An Error Occurred...</h1>
-        </section>
-      </main>
+      <section className='section error'>
+        <h1>Oops, An Error Occurred...</h1>
+      </section>
     );
   }
 
