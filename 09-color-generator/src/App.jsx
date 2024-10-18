@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 const App = () => {
   const [color, setColor] = useState('');
   const [isError, setIsError] = useState(false);
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(new Values('#f15025').all(10)); // setting the default color to #f15025
 
   const handleSubmit = (e) => {
     e.preventDefault();
