@@ -9,15 +9,32 @@ const SingleColor = (props) => {
 
   // using the rgbToHex function from utils to convert the rgb value to hex
   // const hex = rgbToHex(...rgb);
-  // But this is no longer needed since we already have the hexColor value from the props
+  // But this is no longer needed since we already have the hexColor value from the props 😗😗
+
+  const hexValue = `#${hexColor}`;
+
+  // useEffect to remove the alert after 3 seconds
+  useEffect(() => {
+    // setting the alert to false after 3 seconds
+    const timeout = setTimeout(() => {
+      setAlert(false);
+    }, 3000);
+    return () => clearTimeout(timeout);
+  }, [alert]);
 
   return (
     <article
       className={`color ${index > 10 && 'color-light'}`}
       style={{ backgroundColor: `rgb(${bcg})` }}
+      onClick={() => {
+        setAlert(true);
+        // copying the hex value to the clipboard
+        navigator.clipboard.writeText(hexValue);
+      }}
     >
       <p className='percent-value'>{weight}%</p>
-      <p className='color-value'>#{hexColor}</p>
+      <p className='color-value'>{hexValue}</p>
+      {alert && <p className='alert'>copied to clipboard</p>}
     </article>
   );
 };
