@@ -2,9 +2,19 @@ import { useState, useEffect } from 'react';
 import List from './List';
 import Alert from './Alert';
 
+// function that gets the list from local storage or returns an empty array if there is no list
+const getLocalStorage = () => {
+  let list = localStorage.getItem('list');
+  if (list) {
+    return JSON.parse(localStorage.getItem('list'));
+  } else {
+    return [];
+  }
+};
+
 const App = () => {
   const [name, setName] = useState('');
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(getLocalStorage()); // get the list from local storage when the component mounts
   const [isEditing, setIsEditing] = useState(false);
   const [editID, setEditID] = useState(null);
   const [alert, setAlert] = useState({
@@ -64,6 +74,11 @@ const App = () => {
     setEditID(id);
     setName(specificItem.title);
   };
+
+  useEffect(() => {
+    // save the list to local storage when the list state changes
+    localStorage.setItem('list', JSON.stringify(list));
+  }, [list]);
 
   return (
     <section className='section-center'>
