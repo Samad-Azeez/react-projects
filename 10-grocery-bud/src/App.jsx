@@ -19,8 +19,21 @@ const App = () => {
       // display alert if no value is entered
       showAlert(true, 'danger', 'please enter value');
     } else if (name && isEditing) {
-      // deal wit edit
+      // if editing and name value isn't empty, update the item with the new name
+      setList(
+        list.map((item) => {
+          if (item.id === editID) {
+            return { ...item, title: name };
+          }
+          return item;
+        })
+      );
+      setEditID(null);
+      setName('');
+      showAlert(true, 'success', 'item updated');
+      setIsEditing(false);
     } else {
+      // if not editing, add the new item to the list
       showAlert(true, 'success', 'item added to the list');
       const newItem = { id: new Date().getTime().toString(), title: name };
       setList([...list, newItem]);
