@@ -17,7 +17,7 @@ const App = () => {
     e.preventDefault();
     if (!name) {
       // display alert if no value is entered
-      showAlert(true, danger, 'please enter value');
+      showAlert(true, 'danger', 'please enter value');
     } else if (name && isEditing) {
       // deal wit edit
     } else {
@@ -36,7 +36,7 @@ const App = () => {
   return (
     <section className='section-center'>
       <form className='grocery-form' onSubmit={handleSubmit}>
-        {alert.show && <Alert {...alert} />}
+        {alert.show && <Alert {...alert} removeAlert={showAlert} />}
         <h3>grocery bud</h3>
         <div className='form-control'>
           <input
