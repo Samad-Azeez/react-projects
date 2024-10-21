@@ -22,7 +22,7 @@ const App = () => {
       // deal wit edit
     } else {
       showAlert(true, 'success', 'item added to the list');
-      const newItem = { id: new Date().getTime().toString, title: name };
+      const newItem = { id: new Date().getTime().toString(), title: name };
       setList([...list, newItem]);
       setName('');
     }
@@ -37,6 +37,12 @@ const App = () => {
   const clearList = () => {
     showAlert(true, 'danger', 'empty list');
     setList([]);
+  };
+
+  const removeItem = (id) => {
+    showAlert(true, 'danger', 'item removed');
+    // filter out the item with the id that matches the id passed in
+    setList(list.filter((item) => item.id !== id));
   };
 
   return (
@@ -59,7 +65,7 @@ const App = () => {
       </form>
       {list.length > 0 && (
         <div className='grocery-container'>
-          <List items={list} />
+          <List items={list} removeItem={removeItem} />
           <button className='clear-btn' onClick={clearList}>
             clear items
           </button>
