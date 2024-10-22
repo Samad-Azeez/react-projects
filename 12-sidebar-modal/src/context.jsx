@@ -6,4 +6,9 @@ const AppProvider = ({ children }) => {
   return <AppContext.Provider value='hello'>{children}</AppContext.Provider>;
 };
 
-export { AppContext, AppProvider };
+// custom hook to use the AppContext in any component without prop drilling
+const useGlobalContext = () => {
+  return useContext(AppContext);
+};
+
+export { AppContext, AppProvider, useGlobalContext };
