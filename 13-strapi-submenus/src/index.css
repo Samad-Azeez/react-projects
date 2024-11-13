@@ -367,7 +367,7 @@ Sidebar
   opacity: 1;
   visibility: visible;
   transition-property: opacity;
-  transition-duration: 1s;
+  transition-duration: 0.5s;
 }
 
 .sidebar-container {
