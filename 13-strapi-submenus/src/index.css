@@ -421,3 +421,38 @@ Sidebar
     display: none;
   }
 }
+
+/* 
+============= 
+Nav Links
+=============== 
+*/
+
+.nav-links {
+  display: none;
+}
+
+@media screen and (min-width: 992px) {
+  .nav-links {
+    display: flex;
+    justify-content: center;
+    border: 2px solid red;
+  }
+
+  .nav-center {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    border: 2px solid blue;
+  }
+
+  .nav-link {
+    border: 2px solid transparent;
+    padding: 0 1rem;
+    color: var(--white);
+    background: transparent;
+    font-size: 1.25rem;
+    text-transform: capitalize;
+    letter-spacing: var(--letterSpacing);
+    cursor: pointer;
+  }
+}
