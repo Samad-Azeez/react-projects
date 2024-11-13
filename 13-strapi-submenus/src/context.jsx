@@ -4,7 +4,7 @@ const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isSubmenuOpen, setIsSubmenuOpen] = useState(true);
+  const [pageId, setPageId] = useState(null);
 
   const openSidebar = () => {
     setIsSidebarOpen(true);
@@ -14,23 +14,14 @@ const AppProvider = ({ children }) => {
     setIsSidebarOpen(false);
   };
 
-  const openSubmenu = () => {
-    setIsSubmenuOpen(true);
-  };
-
-  const closeSubmenu = () => {
-    setIsSubmenuOpen(false);
-  };
-
   return (
     <AppContext.Provider
       value={{
         isSidebarOpen,
-        isSubmenuOpen,
         openSidebar,
         closeSidebar,
-        openSubmenu,
-        closeSubmenu,
+        pageId,
+        setPageId,
       }}
     >
       {children}
