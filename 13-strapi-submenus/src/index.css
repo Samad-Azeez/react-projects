@@ -436,17 +436,17 @@ Nav Links
   .nav-links {
     display: flex;
     justify-content: center;
-    border: 2px solid red;
+    align-self: stretch;
   }
 
   .nav-center {
+    align-self: stretch;
     display: grid;
     grid-template-columns: auto 1fr;
-    border: 2px solid blue;
   }
 
   .nav-link {
-    border: 2px solid transparent;
+    border: none;
     padding: 0 1rem;
     color: var(--white);
     background: transparent;
@@ -484,12 +484,14 @@ Submenu
     visibility: hidden;
     opacity: 0;
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    z-index: -1;
   }
 
   .show-submenu {
     visibility: visible;
     opacity: 1;
     transform: rotateX(0deg) translateX(-50%);
+    z-index: 1;
   }
 
   .submenu h5 {
