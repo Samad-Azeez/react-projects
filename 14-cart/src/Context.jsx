@@ -28,15 +28,19 @@ const AppProvider = ({ children }) => {
     dispatch({ type: REMOVE, payload: { id } });
   };
 
+  const increase = (id) => {
+    dispatch({ type: INCREASE, payload: { id } });
+  };
+
   return (
-    <AppContext.Provider value={{ ...state, clearCart, removeItem }}>
+    <AppContext.Provider value={{ ...state, clearCart, removeItem, increase }}>
       {children}
     </AppContext.Provider>
   );
 };
 
-export const useGlobalContext = () => {
+const useGlobalContext = () => {
   return useContext(AppContext);
 };
 
-export { AppProvider };
+export { AppProvider, useGlobalContext };
