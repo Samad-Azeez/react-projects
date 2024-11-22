@@ -1,5 +1,5 @@
 export const CLEAR_CART = 'CLEAR_CART';
-export const RENOVE = 'RENOVE';
+export const REMOVE = 'REMOVE';
 export const INCREASE = 'INCREASE';
 export const DECREASE = 'DECREASE';
 export const LOADING = 'LOADING';
