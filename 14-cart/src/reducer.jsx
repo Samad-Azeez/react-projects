@@ -24,6 +24,19 @@ const reducer = (state, action) => {
     newCart.set(itemId, newItem); // update the item in the cart with the new amount
     return { ...state, cart: newCart };
   }
+  if (action.type === DECREASE) {
+    const newCart = new Map(state.cart);
+    const itemId = action.payload.id;
+    const item = newCart.get(itemId); // get the item from the cart
+    const newItem = { ...item, amount: item.amount - 1 }; // decrease the amount of the item
+    // condition to check if the amount is 0
+    if (newItem.amount === 0) {
+      newCart.delete(itemId); // remove the item from the cart if the amount is 0
+    } else {
+      newCart.set(itemId, newItem); // update the item in the cart with the new amount
+    }
+    return { ...state, cart: newCart };
+  }
   throw new Error(`no matching action type: ${action.type}`);
 };
 
