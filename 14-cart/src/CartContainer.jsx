@@ -4,7 +4,7 @@ import { useGlobalContext } from './Context.jsx';
 
 // CartContainer component
 const CartContainer = () => {
-  const { cart } = useGlobalContext();
+  const { cart, clearCart } = useGlobalContext();
 
   // convert the cart map to an array
   const cartArray = Array.from(cart.entries());
@@ -46,10 +46,7 @@ const CartContainer = () => {
           </h5>
         </div>
 
-        <button
-          className='btn btn-hipster'
-          onClick={() => console.log('clear cart')}
-        >
+        <button className='btn btn-hipster' onClick={clearCart}>
           clear cart
         </button>
       </footer>
