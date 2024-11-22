@@ -1,6 +1,6 @@
 import CartItem from './CartItem';
 import cartItems from './data';
-import { useGlobalContext } from './Context';
+import { useGlobalContext } from './Context.jsx';
 
 // CartContainer component
 const CartContainer = () => {
@@ -32,7 +32,7 @@ const CartContainer = () => {
       <div>
         {cartArray.map((cartItem) => {
           const [id, item] = cartItem;
-          return <CartItem key={cartItem.id} {...cartItem} />;
+          return <CartItem key={id} {...item} />;
         })}
       </div>
 
