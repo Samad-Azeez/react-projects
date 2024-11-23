@@ -14,7 +14,7 @@ import { getTotals } from './utils';
 const AppContext = createContext();
 
 const initialState = {
-  loading: false,
+  loading: true,
   cart: new Map(cartItems.map((item) => [item.id, item])), // new Map() creates a new Map object
 };
 
