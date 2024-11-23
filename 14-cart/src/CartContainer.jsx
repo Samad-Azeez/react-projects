@@ -4,7 +4,7 @@ import { useGlobalContext } from './Context.jsx';
 
 // CartContainer component
 const CartContainer = () => {
-  const { cart, clearCart } = useGlobalContext();
+  const { cart, clearCart, totalCost } = useGlobalContext();
 
   // convert the cart map to an array
   const cartArray = Array.from(cart.entries());
@@ -42,7 +42,7 @@ const CartContainer = () => {
 
         <div>
           <h5 className='cart-total'>
-            total <span>$10</span>
+            total <span>${totalCost.toFixed(2)}</span>
           </h5>
         </div>
 
